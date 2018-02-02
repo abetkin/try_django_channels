@@ -1,6 +1,7 @@
 from channels.generic.websocket import JsonWebsocketConsumer
 
 import time
+
 from threading import Thread
 import random
 
@@ -18,7 +19,7 @@ class MyConsumer(JsonWebsocketConsumer):
                 self.send_json([])
                 self.__class__.light += 1
             else:
-                ids = Int.objects.filter(value__gt=333).values_list('id')
+                ids = Int.objects.filter(value__lt=333).values_list('id')
                 self.send_json(list(ids))
                 self.__class__.heavy += 1
                 
